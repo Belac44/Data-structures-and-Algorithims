@@ -1,7 +1,6 @@
 # python3
 
 from collections import namedtuple
-import glob
 import os
 
 Bracket = namedtuple("Bracket", ["char", "position"])
@@ -59,4 +58,4 @@ def main():
 
 
 if __name__ == "__main__":
-    test()
+    main()
