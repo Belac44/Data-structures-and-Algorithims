@@ -21,9 +21,7 @@ def find_mismatch(text):
             if len(opening_brackets_stack) > 0:
                 if (next == "}" and opening_brackets_stack[-1] == "{") or (next == ")" and opening_brackets_stack[-1] == "(") or (next == "]" and opening_brackets_stack[-1] == "["):
                     opening_brackets_stack.pop()
-                    print(f"Comparing Bracket len:{len(opening_brackets_stack)} and text length:{len(text.strip())} and i value:{i+1}")
-                    if len(opening_brackets_stack) > 0 and i+1 <= len(text.strip()):
-                        return f"{i - 1}"
+                    
                 else:
                     return f"{i+1}"
             else:
@@ -31,9 +29,9 @@ def find_mismatch(text):
     if len(opening_brackets_stack) == 0:
         return "Success"
     else:
-        # if len(opening_brackets_stack) == 1 and len(text) > 2:
-        #     return f"{text.index(opening_brackets_stack[-1]) + 1}"
-        return f"{len(text.strip())}"
+        if i == len(text) - 1 and text.strip()[-1] == opening_brackets_stack[-1]:
+            return f"{len(text.strip())}"
+        return f"{text.strip().index(opening_brackets_stack[0]) + 1}"
 
 def test():
     files = os.listdir('./tests')
@@ -46,6 +44,7 @@ def test():
                 label = data.read()
                 if label.strip() == feedback:
                     print(f"Input:{content} Output:{feedback}  True value:{label}")
+                    print("Pos:", i)
                 else:
                     print(f"Broken with {content} Label:{label} Output:{feedback}")
                     print(f"At pos {i}: Total: {length}")
