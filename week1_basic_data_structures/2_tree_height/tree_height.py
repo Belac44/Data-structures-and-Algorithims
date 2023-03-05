@@ -5,19 +5,19 @@ import threading
 
 
 def compute_height(n, parents):
-    # Replace this code with a faster implementation
-    # max_height = 0
-    # for vertex in range(n):
-    #     height = 0
-    #     current = vertex
-    #     while current != -1:
-    #         height += 1
-    #         current = parents[current]
-    #     max_height = max(max_height, height)
-    # return max_height
-    head = parents.index(-1)
+   head_value = parents.index(-1)
+#  direct_children_of_head_number = parents.occurence(head_value)
+   while True:
+    indexes = []
+    for i in parents:
+        if i == head_value:
+            indexes.append(parents.index(i))
 
-
+    for index in indexes:
+         head_value = parents[index]
+       
+       
+           
 def main():
     n = int(input())
     parents = list(map(int, input().split()))
